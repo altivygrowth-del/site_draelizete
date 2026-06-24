@@ -60,7 +60,7 @@
       min-height: 100vh;
       display: flex; align-items: center;
       background: linear-gradient(135deg, var(--dark) 0%, #1e4035 55%, var(--green) 100%);
-      padding: 120px 48px 80px;
+      padding: 120px 48px 0;
       position: relative; overflow: hidden;
     }
     .hero::before {
@@ -68,7 +68,7 @@
       position: absolute; inset: 0;
       background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-    .hero-content { max-width: 660px; position: relative; }
+    .hero-content { max-width: 580px; position: relative; z-index: 2; padding-bottom: 80px; }
     .hero-tag {
       display: inline-block;
       background: rgba(200,169,110,.2); border: 1px solid var(--gold);
@@ -84,7 +84,7 @@
     .hero h1 span { color: var(--gold); }
     .hero p {
       font-size: 1.1rem; color: rgba(255,255,255,.8);
-      line-height: 1.8; margin-bottom: 40px; max-width: 520px;
+      line-height: 1.8; margin-bottom: 40px; max-width: 500px;
     }
     .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
     .btn {
@@ -93,40 +93,29 @@
       font-size: .92rem; font-weight: 600; text-decoration: none;
       transition: all .25s;
     }
-    .btn-primary {
-      background: var(--gold); color: var(--dark);
-    }
+    .btn-primary { background: var(--gold); color: var(--dark); }
     .btn-primary:hover { background: #dbb97e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,169,110,.4); }
-    .btn-outline {
-      border: 2px solid rgba(255,255,255,.4); color: var(--white);
-    }
+    .btn-outline { border: 2px solid rgba(255,255,255,.4); color: var(--white); }
     .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
 
-    .hero-image {
+    /* Hero photo */
+    .hero-photo-wrap {
       position: absolute; right: 0; bottom: 0; top: 0;
-      width: 42%; display: flex; align-items: flex-end;
-      justify-content: center; overflow: hidden;
+      width: 44%; display: flex; align-items: flex-end;
+      justify-content: center; z-index: 2;
     }
-    .hero-image-placeholder {
-      width: 100%; height: 100%;
-      background: linear-gradient(to top, rgba(0,0,0,.3), transparent);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hero-decorative {
-      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
-      width: 360px; height: 360px; border-radius: 50%;
-      border: 1px solid rgba(200,169,110,.2);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hero-decorative::before {
+    .hero-photo-wrap::before {
       content: '';
-      width: 290px; height: 290px; border-radius: 50%;
-      border: 1px solid rgba(200,169,110,.15);
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--dark) 0%, transparent 30%);
+      z-index: 1;
     }
-    .hero-icon {
-      position: absolute; right: calc(5% + 145px); top: 50%;
-      transform: translate(50%, -50%);
-      font-size: 5rem; opacity: .15;
+    .hero-photo {
+      height: 100%; width: 100%;
+      object-fit: cover; object-position: top center;
+      display: block;
+      mask-image: linear-gradient(to top, transparent 0%, black 20%);
+      -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%);
     }
 
     /* ── STATS ── */
@@ -170,21 +159,18 @@
       max-width: 1100px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
     }
-    .about-image-wrap {
-      position: relative;
-    }
     .about-card {
       background: var(--green-bg); border-radius: 24px;
-      padding: 48px 40px; text-align: center;
+      padding: 40px 36px; text-align: center;
       border: 1px solid rgba(45,125,98,.12);
     }
-    .about-avatar {
-      width: 120px; height: 120px; border-radius: 50%;
-      background: var(--green); margin: 0 auto 20px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3rem; color: white;
+    .about-photo {
+      width: 150px; height: 150px; border-radius: 50%;
+      object-fit: cover; object-position: top center;
+      margin: 0 auto 20px;
       border: 4px solid var(--white);
-      box-shadow: 0 8px 32px rgba(45,125,98,.2);
+      box-shadow: 0 8px 32px rgba(45,125,98,.25);
+      display: block;
     }
     .about-card-name {
       font-family: 'Playfair Display', serif;
@@ -271,7 +257,6 @@
     .contact-value { font-size: .98rem; color: var(--dark); font-weight: 500; }
     .contact-value a { color: var(--dark); text-decoration: none; }
     .contact-value a:hover { color: var(--green); }
-
     .cta-box {
       background: var(--green); border-radius: 24px;
       padding: 40px 36px; color: white; text-align: center;
@@ -313,7 +298,7 @@
       nav { padding: 16px 20px; }
       .nav-links { display: none; }
       .hero { padding: 100px 24px 60px; }
-      .hero-decorative { display: none; }
+      .hero-photo-wrap { display: none; }
       section { padding: 64px 24px; }
       .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
       .stat { padding: 24px 28px; }
@@ -346,8 +331,9 @@
       <a href="#servicos" class="btn btn-outline">Ver serviços</a>
     </div>
   </div>
-  <div class="hero-decorative"></div>
-  <div class="hero-icon">🌿</div>
+  <div class="hero-photo-wrap">
+    <img src="elizete.png" alt="Dra. Elizete Araújo" class="hero-photo" />
+  </div>
 </section>
 
 <!-- STATS -->
@@ -375,7 +361,7 @@
   <div class="about-grid">
     <div class="about-image-wrap">
       <div class="about-card">
-        <div class="about-avatar">👩‍⚕️</div>
+        <img src="elizete.png" alt="Dra. Elizete Araújo" class="about-photo" />
         <div class="about-card-name">Dra. Elizete Araújo</div>
         <div class="about-card-title">Fisioterapeuta • Saúde Integrativa</div>
         <div class="about-badges">
@@ -408,31 +394,26 @@
     <p class="section-subtitle">Tecnologia e técnica a serviço da sua recuperação e bem-estar</p>
   </div>
   <div class="services-grid">
-
     <div class="service-card">
       <div class="service-icon">🧪</div>
       <div class="service-name">Ozonioterapia</div>
       <p class="service-desc">Tratamento natural com ozônio para redução de dores, processos inflamatórios, cicatrização e fortalecimento do sistema imunológico.</p>
     </div>
-
     <div class="service-card">
       <div class="service-icon">⚡</div>
       <div class="service-name">Terapia Neural</div>
       <p class="service-desc">Técnica que atua no sistema nervoso autônomo para tratar dores crônicas, bloqueios e distúrbios funcionais com resultados rápidos e eficazes.</p>
     </div>
-
     <div class="service-card">
       <div class="service-icon">💡</div>
       <div class="service-name">Laserterapia</div>
       <p class="service-desc">Aplicação de laser terapêutico de baixa intensidade para alívio da dor, redução de inflamação e aceleração do processo de recuperação.</p>
     </div>
-
     <div class="service-card">
       <div class="service-icon">🏋️‍♀️</div>
       <div class="service-name">Exercícios Individualizados</div>
       <p class="service-desc">Programas de exercícios personalizados com foco em reabilitação, fortalecimento muscular, postura e qualidade de vida.</p>
     </div>
-
   </div>
 </section>
 
@@ -504,7 +485,6 @@
         </div>
       </div>
     </div>
-
     <div class="cta-box">
       <h3>Pronto para começar?</h3>
       <p>Agende sua avaliação agora mesmo pelo WhatsApp. É rápido, fácil e sem compromisso.</p>
