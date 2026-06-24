@@ -59,14 +59,14 @@
     .hero {
       min-height: 100vh;
       display: flex; align-items: center;
-      background: var(--dark);
+      background: #000;
       padding: 120px 48px 80px;
       position: relative; overflow: hidden;
     }
     .hero::before {
       content: '';
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(to right, rgba(10,30,22,.72) 0%, rgba(10,30,22,.45) 50%, rgba(10,30,22,.15) 100%);
+      background: linear-gradient(to right, rgba(0,0,0,.55) 0%, rgba(0,0,0,.2) 50%, rgba(0,0,0,.0) 100%);
     }
     .hero-content { max-width: 580px; position: relative; z-index: 2; }
     .hero-tag {
